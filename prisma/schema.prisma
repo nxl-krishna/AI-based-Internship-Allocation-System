@@ -1,0 +1,97 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"  // FIXED: Added "-js"
+  // Removed "output" so it installs to node_modules (Standard practice)
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// 1. USERS
+model User {
+  id        String   @id @default(uuid())
+  clerkId   String   @unique
+  email     String   @unique
+  role      Role     @default(APPLICANT)
+  createdAt DateTime @default(now())
+  
+  profile   ApplicantProfile?
+  matches   AllocationResult[]
+}
+
+// 2. REGISTRATION FORM
+model ApplicantProfile {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+
+  fullName  String
+  gender    Gender   // Enum: MALE, FEMALE, OTHER
+  phone     String?
+  
+  city          String
+  preferredCity String   
+  cgpa          Float    
+  university    String
+
+  resumeUrl     String   
+  skills        String   
+  
+  isProcessed   Boolean  @default(false)
+  updatedAt     DateTime @updatedAt
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+// 3. JOBS
+model Job {
+  id          String   @id @default(uuid())
+  title       String   
+  company     String
+  category    String   
+  location    String   
+  minCgpa     Float    @default(6.0) 
+  
+  totalSlots  Int      
+  filledSlots Int      @default(0) 
+
+  allocations AllocationResult[]
+}
+
+// 4. RESULTS
+model AllocationResult {
+  id        String   @id @default(uuid())
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  jobId     String
+  job       Job      @relation(fields: [jobId], references: [id])
+
+  confidenceScore Float  
+  predictedCategory String 
+
+  status    AllocationStatus @default(PENDING) 
+  matchedAt DateTime @default(now())
+
+  @@index([confidenceScore]) 
+  @@unique([userId, jobId]) // ADDED: Prevents duplicate matches for same job
+}
+
+enum Role {
+  ADMIN
+  APPLICANT
+}
+
+enum AllocationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  ACCEPTED
+}
