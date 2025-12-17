@@ -1,4 +1,4 @@
-# 🏛️ National Internship Portal (made by IIIT vadodara students)
+# 🏛️ Internship Allocation Portal (made by IIIT vadodara students)
 
 A full-stack AI-powered Internship Allocation System built for Indian  youth to allocate the internship provided by the government (problem statement from the SIH2025). This platform automates the matching of students to internships using Machine Learning for resume parsing and an algorithmic allocation engine for merit-based selection.
 
