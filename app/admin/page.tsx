@@ -1,7 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { PrismaClient } from "@prisma/client";
 import { redirect } from "next/navigation";
-
+import Link from "next/link";
 const prisma = new PrismaClient();
 
 export default async function AdminDashboard() {
@@ -35,6 +35,15 @@ export default async function AdminDashboard() {
   return (
     <div className="min-h-screen bg-slate-50 text-black p-8">
       <div className="max-w-6xl mx-auto">
+        <div className="flex justify-between items-center mb-8">
+        <div>
+          <Link href="/home" className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-slate-900 mb-2 transition">
+             <span>← Back to Main Hub</span>
+          </Link>
+          
+        </div>
+        {/* Optional: Add UserButton here if you want */}
+      </div>
         <h1 className="text-3xl font-bold mb-2">Admin Control Center</h1>
         <p className="text-gray-600 mb-8">Overview of Internship Allocations</p>
 

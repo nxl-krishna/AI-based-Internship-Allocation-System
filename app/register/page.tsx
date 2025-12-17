@@ -2,6 +2,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { PrismaClient } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { registerApplicant } from "../../lib/action";
+import Link from "next/link";
 
 const prisma = new PrismaClient();
 
@@ -30,6 +31,9 @@ export default async function RegisterPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-2xl">
+        <Link href="/home" className="absolute top-6 right-6 text-sm text-gray-400 hover:text-gray-700 font-medium">
+        ✕ Cancel
+      </Link>
         <h1 className="text-3xl font-bold mb-2 text-gray-800">Applicant Registration</h1>
         <p className="text-gray-500 mb-6">Please fill this form once to be considered for internships.</p>
         
@@ -86,8 +90,15 @@ export default async function RegisterPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Resume Link (Google Drive/GitHub)</label>
-            <input name="resumeUrl" required className="w-full border p-2 rounded text-black" placeholder="https://drive.google.com/..." />
+            <label className="block text-sm font-medium text-gray-700">Resume (PDF Only)</label>
+            {/* CHANGED: type="file" and name="resumeFile" */}
+            <input 
+              name="resumeFile" 
+              type="file" 
+              accept=".pdf" 
+              required 
+              className="w-full border p-2 rounded text-black bg-white" 
+            />
           </div>
 
           <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition">

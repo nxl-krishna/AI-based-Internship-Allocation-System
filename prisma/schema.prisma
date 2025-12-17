@@ -39,7 +39,7 @@ model ApplicantProfile {
 
   resumeUrl     String   
   skills        String   
-  
+  aiCategory    String?
   isProcessed   Boolean  @default(false)
   updatedAt     DateTime @updatedAt
 }

@@ -46,7 +46,7 @@ export async function POST(
     // B. Mark as ACCEPTED for THIS job
     await prisma.allocationResult.update({
       where: { id: allocationId },
-      data: { status: 'ACCEPTED' }
+      data: { status: 'APPROVED' }
     });
 
     // C. MAGIC STEP: Auto-Reject this user from ALL other pending jobs

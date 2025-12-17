@@ -1,33 +1,43 @@
 // lib/ml-service.ts
 
-// Toggle this in your .env file: USE_REAL_AI="true" or "false"
-const USE_REAL_AI = process.env.USE_REAL_AI === "true";
+const API_URL=process.env.NEXT_PUBLIC_AI_API_URL || "";
 
 interface MLResponse {
   category: string;
-  confidenceScore: number;
+  confidence: number;
 }
 
-export async function getApplicantScore(resumeLink: string, skills: string): Promise<MLResponse> {
-  
-  if (!USE_REAL_AI) {
-    console.log("⚠️ [MOCK MODE] Saving AI Credits. Returning dummy data.");
-    
-    // LOGIC: If skills contain "React", give React role. Else Data Science.
-    // This lets you test both scenarios manually!
-    if (skills.toLowerCase().includes("react")) {
-      return {
-        category: "React Developer",
-        confidenceScore: 0.92 // 92% Match
-      };
-    } else {
-      return {
-        category: "Data Science",
-        confidenceScore: 0.88 // 88% Match
-      };
-    }
-  }
+export async function getApplicantScore(resumeFile: File): Promise<MLResponse> {
+  console.log("🚀 Sending PDF to AI Server...");
 
-  // TODO: PASTE YOUR REAL API CALL HERE LATER
-  return { category: "Unsorted", confidenceScore: 0 };
+  try {
+    // 1. Prepare the form data (simulation of Python's files={"file": ...})
+    const formData = new FormData();
+    formData.append("file", resumeFile);
+
+    // 2. Call the API
+    const response = await fetch(API_URL, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`AI API Error: ${response.statusText}`);
+    }
+
+    // 3. Parse Result
+    const result = await response.json();
+    
+    console.log("✅ AI Success:", result);
+
+    return {
+      category: result.category,
+      confidence: result.confidence // API returns 0.0 to 1.0
+    };
+
+  } catch (error) {
+    console.error("❌ AI Connection Failed:", error);
+    // Fallback if API fails (so the app doesn't crash)
+    return { category: "Unsorted", confidence: 0 };
+  }
 }
