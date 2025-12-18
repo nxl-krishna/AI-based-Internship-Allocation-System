@@ -23,7 +23,7 @@ export default async function LandingPage() {
         <div className="flex-1 overflow-hidden whitespace-nowrap">
            <p className="text-sm text-red-800 font-medium inline-block animate-marquee">
               📢 Applications for Phase 1 Internships are now open. Last date to apply is 30th December.  ||  
-              📢 New companies added: HAL, DRDO, and BHEL have posted 500+ vacancies.
+              📢 New companies added:500+ vacancies.
            </p>
         </div>
       </div>
@@ -45,7 +45,7 @@ export default async function LandingPage() {
              
              <p className="text-lg text-gray-600 leading-relaxed">
                Bridging the gap between academic learning and industry requirements. 
-               Apply for internships in top Public Sector Units (PSUs) and Government Departments.
+               Apply for internships in top companies and kickstart your career with hands-on experience.
              </p>
 
              <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -59,16 +59,16 @@ export default async function LandingPage() {
           {/* Right Side: Stats/Images Grid */}
           <div className="grid grid-cols-2 gap-4">
              <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-blue-600 text-center">
-                <div className="text-3xl font-bold text-blue-900">1.5 Lakh+</div>
+                <div className="text-3xl font-bold text-blue-900">100+</div>
                 <div className="text-sm text-gray-500">Internships Live</div>
              </div>
              <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-600 text-center">
-                <div className="text-3xl font-bold text-green-900">500+</div>
+                <div className="text-3xl font-bold text-green-900">20+</div>
                 <div className="text-sm text-gray-500">Partner Companies</div>
              </div>
              <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-orange-500 text-center col-span-2">
-                <div className="text-xl font-bold text-gray-800">"Sabka Saath, Sabka Vikas"</div>
-                <div className="text-sm text-gray-500 mt-1">Inclusive growth through skill development</div>
+                <div className="text-xl font-bold text-gray-800">Inclusive growth through skill development</div>
+                <div className="text-sm text-gray-500 mt-1">get trained for the future</div>
              </div>
           </div>
 
@@ -85,10 +85,10 @@ export default async function LandingPage() {
           <span className="hover:text-white cursor-pointer">Feedback</span>
         </div>
         <p>
-          Content Owned and Maintained by Ministry of Education, Government of India.
+          Content is uploaded for academic project purpose only.
         </p>
         <p className="mt-2 text-xs text-gray-500">
-          Designed and Developed by National Informatics Centre (NIC)
+          Designed and Developed by krishna rathore 
         </p>
         <div className="mt-4 opacity-50 text-xs">
           Last Updated: {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
