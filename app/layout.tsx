@@ -37,14 +37,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 text-black font-sans`}>
           
-          {/* 1. GOVT TOP STRIP */}
-          <div className="bg-gray-100 border-b text-xs py-1 px-4 flex justify-between items-center text-gray-600 font-sans">
-            <div className="flex gap-4">
-               <span>भारत सरकार | Government of India</span>
-               <span className="hidden sm:inline">Ministry of Corporate Affairs</span>
-            </div>
-            
-          </div>
+          
 
           {/* 2. MAIN HEADER */}
           <header className="bg-white py-3 px-4 shadow-sm border-b-4 border-orange-500">
@@ -53,10 +46,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                    <div className="text-5xl">🏛️</div> 
                    <div>
                       <h1 className="text-2xl md:text-3xl font-bold text-blue-900 leading-none">
-                        National Internship Portal
+                        Internship Portal
                       </h1>
                       <p className="text-xs font-bold text-gray-600 tracking-wide mt-1 uppercase">
-                        Satyamev Jayate | Transforming Indian Youth
+                         Transforming Indian Youth
                       </p>
                    </div>
                 </div>
@@ -134,7 +127,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <main>{children}</main>
           
           <footer className="bg-gray-800 text-gray-400 text-xs text-center py-4 mt-auto">
-             Content Owned by Ministry of Corporate Affairs, Govt of India.
+             Content is uploaded for academic project purpose only.
           </footer>
 
         </body>
